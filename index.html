@@ -9,6 +9,21 @@
     <!-- Иконка -->
     <link rel="icon" href="https://static.wikia.nocookie.net/minecraft_gamepedia/images/4/4c/Grass_Block_JE5.png" type="image/png">
     <link rel="stylesheet" href="style.css">
+    <!-- Дополнительные стили для снежинки -->
+    <style>
+        .snowflake {
+            font-size: 3rem;
+            display: inline-block;
+            animation: spin 3s infinite linear;
+            color: #a0d0ff; /* нежно-голубой */
+            text-shadow: 0 0 5px cyan;
+            line-height: 1; /* чтобы не скакала высота */
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
 </head>
 <body>
 <header>
@@ -16,9 +31,11 @@
         <h1>A4P</h1>
     </div>
     <p class="tagline">All4Smp</p>
-    <!-- Картинка после tagline -->
-    <div style="text-align: center;">
+    <!-- Картинка с анимированными снежинками по бокам -->
+    <div style="text-align: center; display: flex; align-items: center; justify-content: center; gap: 15px;">
+        <span class="snowflake">❄️</span>
         <img src="https://raw.githubusercontent.com/Chetwerka/A4P/main/A4Plogo.png" alt="Логотип">
+        <span class="snowflake">❄️</span>
     </div>
 </header>
 
@@ -26,10 +43,10 @@
     <h2>Донат-пакеты</h2>
     <div class="donate-cards">
         <div class="card">
-<h3>
-    <span style="background: linear-gradient(45deg, #8A2BE2, #E6E6FA, #8A2BE2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent; display: inline-block; margin-right: 5px;">♕</span>
-    VIP (Месяц)
-</h3>
+            <h3>
+                <span style="background: linear-gradient(45deg, #8A2BE2, #E6E6FA, #8A2BE2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent; display: inline-block; margin-right: 5px;">♕</span>
+                VIP (Месяц)
+            </h3>
             <p class="price">150 руб.</p>
             <ul>
                 <li><span style="color: #9B59B6;">♦</span> дᴏᴄтупʜыᴇ ᴋᴏмᴀʜды</li>
@@ -61,4 +78,3 @@
 <script src="script.js"></script>
 </body>
 </html>
-
