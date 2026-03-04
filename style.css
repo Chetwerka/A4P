@@ -1,0 +1,201 @@
+/* Общие стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #1e2b3a, #0f1a24);
+    color: #f0f0f0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Шапка */
+header {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    text-align: center;
+    border-bottom: 3px solid #4caf50;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.logo img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 5px #4caf50);
+}
+
+.logo h1 {
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 0 #2a5c2a;
+}
+
+.tagline {
+    font-size: 1.2rem;
+    color: #ccc;
+}
+
+/* Основной контент */
+main {
+    flex: 1;
+    padding: 30px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+main h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    color: #ffd966;
+    text-shadow: 1px 1px 0 #b8860b;
+}
+
+/* Карточки доната */
+.donate-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 2px solid #4caf50;
+    border-radius: 15px;
+    padding: 20px;
+    width: 280px;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(76, 175, 80, 0.4);
+}
+
+.card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+    color: #ffd966;
+}
+
+.card .price {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #4caf50;
+    margin-bottom: 15px;
+}
+
+.card ul {
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.card ul li {
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.buy-btn {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.2s;
+    width: 100%;
+}
+
+.buy-btn:hover {
+    background-color: #45a049;
+    transform: scale(1.02);
+}
+
+/* Подвал */
+footer {
+    background-color: #0a121c;
+    text-align: center;
+    padding: 15px;
+    font-size: 1rem;
+    border-top: 2px solid #4caf50;
+}
+
+/* Модальное окно (демо-уведомление) */
+.modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    z-index: 1000;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: #1e2b3a;
+    padding: 30px;
+    border-radius: 15px;
+    border: 2px solid #4caf50;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #aaa;
+}
+
+.close:hover {
+    color: white;
+}
+
+#modal-message {
+    font-size: 1.2rem;
+    margin: 20px 0;
+}
+
+#modal-close {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+#modal-close:hover {
+    background-color: #45a049;
+}

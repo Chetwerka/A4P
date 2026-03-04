@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft Server – Донат</title>
+    <!-- Иконка сайта (favicon) – замените на свой файл или оставьте ссылку -->
+    <link rel="icon" href="https://static.wikia.nocookie.net/minecraft_gamepedia/images/4/4c/Grass_Block_JE5.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <!-- Здесь можно вставить логотип сервера -->
+            <img src="https://static.wikia.nocookie.net/minecraft_gamepedia/images/4/4c/Grass_Block_JE5.png" alt="Server logo">
+            <h1>A4P</h1>
+        </div>
+        <p class="tagline"> 
+                        All4Smp</p>
+    </header>
+
+    <main>
+        <h2>Донат-пакеты</h2>
+        <div class="donate-cards">
+            <div class="card">
+                <h3>VIP</h3>
+                <p class="price">100 руб.</p>
+                <ul>
+                    <li>Доступ на VIP-зоны</li>
+                    <li>Особый цвет ника</li>
+                    <li>Команда /fly</li>
+                </ul>
+                <button class="buy-btn" data-package="VIP" data-price="100">Купить</button>
+            </div>
+            <div class="card">
+                <h3>Premium</h3>
+                <p class="price">300 руб.</p>
+                <ul>
+                    <li>Всё из VIP</li>
+                    <li>Команда /feed, /heal</li>
+                    <li>Кит с алмазами</li>
+                </ul>
+                <button class="buy-btn" data-package="Premium" data-price="300">Купить</button>
+            </div>
+            <div class="card">
+                <h3>Spirit</h3>
+                <p class="price">500 руб.</p>
+                <ul>
+                    <li>Всё из Premium</li>
+                    <li>Своя цветная частица</li>
+                    <li>Доступ к /god</li>
+                </ul>
+                <button class="buy-btn" data-package="Spirit" data-price="500">Купить</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Сервер Minecraft v1.20 | IP: play.myserver.ru</p>
+    </footer>
+
+    <!-- Модальное окно (просто для демо) -->
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="modal-message">Спасибо за интерес к нашему серверу! В реальном проекте здесь была бы ссылка на оплату.</p>
+            <button id="modal-close">ОК</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
