@@ -110,7 +110,7 @@ main h2 {
 .card .price {
     font-size: 2rem;
     font-weight: bold;
-    color: #b19cd9;
+    color: #8e44ad;
     margin-bottom: 15px;
     text-shadow: 0 0 10px #fff, 0 0 20px #9b59b6;
 }
@@ -228,4 +228,5 @@ footer p {
     background-color: #8e44ad;
     box-shadow: 0 0 20px #c39bd3;
 }
+
 
