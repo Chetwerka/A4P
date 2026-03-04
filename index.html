@@ -8,15 +8,54 @@
     <link rel="icon" href="https://static.wikia.nocookie.net/minecraft_gamepedia/images/4/4c/Grass_Block_JE5.png" type="image/png">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* ===== Навигационные кнопки ===== */
-        .nav-menu {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin: 15px 0 20px;
-            flex-wrap: wrap;
+        /* ===== Общие стили (можно оставить в style.css, но для примера здесь) ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
+        body {
+            background: linear-gradient(135deg, #1e2b3a, #0f1a24);
+            color: #f0f0f0;
+            font-family: 'Montserrat', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Шапка */
+        header {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px 20px 30px;
+            border-bottom: 3px solid #4caf50;
+            text-align: center;
+        }
+
+        /* Верхняя строка с логотипом и кнопками */
+        .header-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .logo h1 {
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 0 #2a5c2a;
+        }
+
+        /* Стили для групп кнопок */
+        .nav-left, .nav-right {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* Общие стили кнопок */
         .nav-btn {
             background: linear-gradient(135deg, #8A2BE2, #9B59B6);
             color: white;
@@ -30,7 +69,9 @@
             transition: transform 0.2s, box-shadow 0.2s;
             border: 1px solid rgba(255,255,255,0.2);
             box-shadow: 0 4px 10px rgba(138, 43, 226, 0.3);
-            cursor: pointer; /* чтобы было видно, что кликабельно */
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
         }
 
         .nav-btn:hover {
@@ -39,11 +80,27 @@
             background: linear-gradient(135deg, #9B59B6, #8A2BE2);
         }
 
-        /* Активная кнопка (более яркая) */
         .nav-btn.active {
             background: linear-gradient(135deg, #E6E6FA, #9B59B6);
             color: #1e1e2f;
             box-shadow: 0 0 15px #E6E6FA;
+        }
+
+        /* Адаптация для мобильных */
+        @media (max-width: 700px) {
+            .header-top {
+                flex-direction: column;
+            }
+            .nav-left, .nav-right {
+                justify-content: center;
+            }
+        }
+
+        /* Tagline и картинка */
+        .tagline {
+            font-size: 1.2rem;
+            color: #ccc;
+            margin: 10px 0 15px;
         }
 
         /* ===== Контейнеры звёзд ===== */
@@ -86,11 +143,11 @@
 
         /* ===== Переключаемые секции ===== */
         .content-section {
-            display: none; /* по умолчанию скрыты */
+            display: none;
             animation: fade 0.3s ease;
         }
         .content-section.active {
-            display: block; /* показываем активную */
+            display: block;
         }
 
         @keyframes fade {
@@ -98,7 +155,74 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Стили для контента внутри секций (можно доработать) */
+        /* Карточки доната (твои существующие стили) */
+        .donate-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid #4caf50;
+            border-radius: 15px;
+            padding: 20px;
+            width: 280px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(76, 175, 80, 0.4);
+        }
+
+        .card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            color: #ffd966;
+        }
+
+        .price {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #4caf50;
+            margin-bottom: 15px;
+        }
+
+        .card ul {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .card ul li {
+            padding: 5px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .buy-btn {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s, transform 0.2s;
+            width: 100%;
+        }
+
+        .buy-btn:hover {
+            background-color: #45a049;
+            transform: scale(1.02);
+        }
+
+        /* Стили для секций правил, вики, каналов */
         .rules-content, .wiki-content, .channels-content {
             background: rgba(0,0,0,0.3);
             backdrop-filter: blur(5px);
@@ -108,6 +232,8 @@
             color: #f0f0f0;
             font-size: 1.1rem;
             line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
         }
         .rules-content ul, .wiki-content ul, .channels-content ul {
             list-style: none;
@@ -122,6 +248,66 @@
             color: #9B59B6;
             margin-right: 10px;
         }
+        .channels-content a {
+            color: #9B59B6;
+            text-decoration: none;
+        }
+        .channels-content a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            background-color: #0a121c;
+            text-align: center;
+            padding: 15px;
+            font-size: 1rem;
+            border-top: 2px solid #4caf50;
+            margin-top: auto;
+        }
+
+        /* Модальное окно (без изменений) */
+        .modal {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 1000;
+        }
+        .modal.hidden { display: none; }
+        .modal-content {
+            background: #1e2b3a;
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid #4caf50;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+        }
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #aaa;
+        }
+        .close:hover { color: white; }
+        #modal-close {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        #modal-close:hover { background-color: #45a049; }
     </style>
 </head>
 <body>
@@ -129,31 +315,36 @@
     <div id="shooting-star-container"></div>
 
     <header>
-        <div class="logo">
-            <h1>A4P</h1>
-        </div>
-        <p class="tagline">All4Smp</p>
+        <!-- Верхняя строка: левые кнопки - логотип - правые кнопки -->
+        <div class="header-top">
+            <div class="nav-left">
+                <button class="nav-btn" data-section="rules">Правила</button>
+                <button class="nav-btn" data-section="wiki">Вики</button>
+            </div>
 
-        <!-- НАВИГАЦИОННЫЕ КНОПКИ (теперь это не ссылки, а кнопки для переключения) -->
-        <div class="nav-menu">
-            <button class="nav-btn active" data-section="donate">Донат</button>
-            <button class="nav-btn" data-section="rules">Правила</button>
-            <button class="nav-btn" data-section="wiki">Вики</button>
-            <button class="nav-btn" data-section="channels">Каналы</button>
+            <div class="logo">
+                <h1>A4P</h1>
+            </div>
+
+            <div class="nav-right">
+                <button class="nav-btn active" data-section="donate">Донат</button>
+                <button class="nav-btn" data-section="channels">Каналы</button>
+            </div>
         </div>
+
+        <p class="tagline">All4Smp</p>
 
         <!-- Картинка -->
         <div style="text-align: center;">
-            <img src="https://raw.githubusercontent.com/Chetwerka/A4P/main/A4Plogo.png" alt="Логотип">
+            <img src="https://raw.githubusercontent.com/Chetwerka/A4P/main/A4Plogo.png" alt="Логотип" style="max-width: 200px;">
         </div>
     </header>
 
     <main>
-        <!-- ===== КОНТЕЙНЕР ДЛЯ ПЕРЕКЛЮЧАЕМЫХ СЕКЦИЙ ===== -->
         <div id="content-area">
             <!-- Секция ДОНАТ (активна по умолчанию) -->
             <div id="donate-section" class="content-section active">
-                <h2>Донат-пакеты</h2>
+                <h2 style="text-align: center;">Донат-пакеты</h2>
                 <div class="donate-cards">
                     <div class="card">
                         <h3>
@@ -175,9 +366,9 @@
                 </div>
             </div>
 
-            <!-- Секция ПРАВИЛА (скрыта) -->
+            <!-- Секция ПРАВИЛА -->
             <div id="rules-section" class="content-section">
-                <h2>Правила сервера</h2>
+                <h2 style="text-align: center;">Правила сервера</h2>
                 <div class="rules-content">
                     <ul>
                         <li>Не использовать читы и багоюзерство.</li>
@@ -190,23 +381,23 @@
                 </div>
             </div>
 
-            <!-- Секция ВИКИ (скрыта) -->
+            <!-- Секция ВИКИ -->
             <div id="wiki-section" class="content-section">
-                <h2>Вики по серверу</h2>
+                <h2 style="text-align: center;">Вики по серверу</h2>
                 <div class="wiki-content">
                     <p>Здесь будет подробная информация о сервере, командах, особенностях и рецептах. Пока в разработке, но скоро всё появится!</p>
                 </div>
             </div>
 
-            <!-- Секция КАНАЛЫ (скрыта) -->
+            <!-- Секция КАНАЛЫ -->
             <div id="channels-section" class="content-section">
-                <h2>Наши каналы</h2>
+                <h2 style="text-align: center;">Наши каналы</h2>
                 <div class="channels-content">
                     <ul>
-                        <li>Discord: <a href="#" style="color:#9B59B6;">discord.gg/a4p</a></li>
-                        <li>Telegram: <a href="#" style="color:#9B59B6;">t.me/a4p</a></li>
-                        <li>YouTube: <a href="#" style="color:#9B59B6;">youtube.com/@a4p</a></li>
-                        <li>ВКонтакте: <a href="#" style="color:#9B59B6;">vk.com/a4p</a></li>
+                        <li>Discord: <a href="#">discord.gg/a4p</a></li>
+                        <li>Telegram: <a href="#">t.me/a4p</a></li>
+                        <li>YouTube: <a href="#">youtube.com/@a4p</a></li>
+                        <li>ВКонтакте: <a href="#">vk.com/a4p</a></li>
                     </ul>
                 </div>
             </div>
@@ -217,7 +408,7 @@
         <p>A4P-All4Smp 1.21.x | IP: 185.9.145.89:32258</p>
     </footer>
 
-    <!-- Модальное окно (без изменений) -->
+    <!-- Модальное окно -->
     <div id="modal" class="modal hidden">
         <div class="modal-content">
             <span class="close">&times;</span>
@@ -226,9 +417,8 @@
         </div>
     </div>
 
-    <!-- Скрипты -->
     <script>
-        // ---------- ЗВЁЗДЫ (без изменений) ----------
+        // ---------- ЗВЁЗДЫ ----------
         function createBgStars() {
             const container = document.getElementById('bg-stars');
             const starCount = 150;
@@ -276,14 +466,12 @@
 
         // ---------- ПЕРЕКЛЮЧЕНИЕ РАЗДЕЛОВ ----------
         document.addEventListener('DOMContentLoaded', function() {
-            // Запуск звёзд
             createBgStars();
             for (let i = 0; i < 8; i++) {
                 setTimeout(createShootingStar, i * 300);
             }
             setInterval(createShootingStar, 400);
 
-            // Навигация
             const navButtons = document.querySelectorAll('.nav-btn');
             const sections = {
                 donate: document.getElementById('donate-section'),
@@ -293,33 +481,59 @@
             };
 
             function switchSection(sectionId) {
-                // Скрываем все секции
                 Object.values(sections).forEach(section => {
                     section.classList.remove('active');
                 });
-                // Показываем нужную
                 if (sections[sectionId]) {
                     sections[sectionId].classList.add('active');
                 }
-                // Убираем активный класс у всех кнопок
                 navButtons.forEach(btn => btn.classList.remove('active'));
-                // Добавляем активный класс нажатой кнопке
                 const activeButton = Array.from(navButtons).find(btn => btn.dataset.section === sectionId);
                 if (activeButton) activeButton.classList.add('active');
             }
 
-            // Навешиваем обработчики на кнопки
             navButtons.forEach(btn => {
                 btn.addEventListener('click', function() {
                     const sectionId = this.dataset.section;
                     switchSection(sectionId);
                 });
             });
+        });
 
-            // По умолчанию активен донат (уже active в HTML, но на всякий случай)
-            // Можно оставить как есть
+        // Модальное окно (из script.js) – оставь как есть
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('modal');
+            const modalMessage = document.getElementById('modal-message');
+            const closeBtn = document.querySelector('.close');
+            const modalClose = document.getElementById('modal-close');
+
+            function showModal(message) {
+                modalMessage.textContent = message;
+                modal.classList.remove('hidden');
+            }
+
+            function closeModal() {
+                modal.classList.add('hidden');
+            }
+
+            closeBtn.addEventListener('click', closeModal);
+            modalClose.addEventListener('click', closeModal);
+            window.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    closeModal();
+                }
+            });
+
+            const buyButtons = document.querySelectorAll('.buy-btn');
+            buyButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const pkg = this.getAttribute('data-package');
+                    const price = this.getAttribute('data-price');
+                    showModal(`Вы выбрали пакет "${pkg}" за ${price} руб.\nВ реальном проекте здесь будет переход к оплате.`);
+                });
+            });
         });
     </script>
-    <script src="script.js"></script>
+    <!-- Если используешь отдельный script.js, он тоже подключится, но код модалки уже здесь -->
 </body>
 </html>
