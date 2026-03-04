@@ -49,10 +49,12 @@ header img {
 }
 
 .tagline {
-    font-size: 1.2rem;
-    color: #ccc;
-    text-shadow: 0 0 5px #9b59b6;
+    font-size: 1.2rem;        /* можно уменьшить, если хочешь */
+    color: #dcd0ff;           /* тот же цвет, что и у A4P */
+    opacity: 0.6;             /* полупрозрачность */
+    text-shadow: none;        /* убираем свечение, чтобы не привлекал внимание */
     letter-spacing: 1px;
+    font-weight: 400;
 }
 
 /* Основной контент */
@@ -228,5 +230,6 @@ footer p {
     background-color: #8e44ad;
     box-shadow: 0 0 20px #c39bd3;
 }
+
 
 
