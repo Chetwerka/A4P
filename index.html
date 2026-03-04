@@ -7,71 +7,57 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="icon" href="https://static.wikia.nocookie.net/minecraft_gamepedia/images/4/4c/Grass_Block_JE5.png" type="image/png">
     <link rel="stylesheet" href="style.css">
+    <!-- Дополнительные стили для навигации (можно и в style.css, но для удобства здесь) -->
     <style>
-        /* ===== Фоновые мерцающие звёзды (под всем) ===== */
-        #bg-stars {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0; /* под всем */
-            overflow: hidden;
+        /* ===== Навигационные кнопки ===== */
+        .nav-menu {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 15px 0 20px;
+            flex-wrap: wrap;
         }
 
-        .bg-star {
-            position: absolute;
-            background-color: currentColor;
-            border-radius: 50%;
-            box-shadow: 0 0 8px currentColor;
-            animation: twinkle linear infinite;
+        .nav-btn {
+            background: linear-gradient(135deg, #8A2BE2, #9B59B6);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 4px 10px rgba(138, 43, 226, 0.3);
         }
 
-        @keyframes twinkle {
-            0% { opacity: 0.2; transform: scale(0.8); }
-            50% { opacity: 1; transform: scale(1.2); }
-            100% { opacity: 0.2; transform: scale(0.8); }
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(138, 43, 226, 0.6);
+            background: linear-gradient(135deg, #9B59B6, #8A2BE2);
         }
 
-        /* ===== Падающие звёзды (над всем контентом) ===== */
-        #shooting-star-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 10000; /* выше всего */
-            overflow: hidden;
-        }
-
-        .shooting-star {
-            position: absolute;
-            font-size: 1.5rem;
-            text-shadow: 0 0 15px currentColor;
-            animation: fall linear forwards;
-            /* Начальная позиция чуть выше экрана */
-            transform: translateY(-10vh);
-        }
-
-        @keyframes fall {
-            0% {
-                transform: translateY(-10vh) rotate(0deg);
-                opacity: 1;
+        /* Адаптация для мобильных */
+        @media (max-width: 600px) {
+            .nav-menu {
+                gap: 8px;
             }
-            100% {
-                transform: translateY(110vh) rotate(360deg);
-                opacity: 0.2;
+            .nav-btn {
+                padding: 6px 12px;
+                font-size: 0.9rem;
             }
         }
+
+        /* Старые стили (можно оставить в style.css, но я продублирую ключевые для шапки) */
+        /* (Здесь можно вставить твой старый style.css, если хочешь всё в одном файле) */
     </style>
 </head>
 <body>
-    <!-- Фоновые мерцающие звёзды (под всем) -->
+    <!-- Фоновые мерцающие звёзды -->
     <div id="bg-stars"></div>
-
-    <!-- Падающие звёзды (над всем) -->
+    <!-- Падающие звёзды -->
     <div id="shooting-star-container"></div>
 
     <header>
@@ -79,6 +65,16 @@
             <h1>A4P</h1>
         </div>
         <p class="tagline">All4Smp</p>
+
+        <!-- НАВИГАЦИОННЫЕ КНОПКИ -->
+        <div class="nav-menu">
+            <a href="#" class="nav-btn">Правила</a>
+            <a href="#" class="nav-btn">Вики</a>
+            <a href="#" class="nav-btn">Донат</a>
+            <a href="#" class="nav-btn">Каналы</a>
+        </div>
+
+        <!-- Картинка -->
         <div style="text-align: center;">
             <img src="https://raw.githubusercontent.com/Chetwerka/A4P/main/A4Plogo.png" alt="Логотип">
         </div>
@@ -111,6 +107,7 @@
         <p>A4P-All4Smp 1.21.x | IP: 185.9.145.89:32258</p>
     </footer>
 
+    <!-- Модальное окно -->
     <div id="modal" class="modal hidden">
         <div class="modal-content">
             <span class="close">&times;</span>
@@ -119,83 +116,63 @@
         </div>
     </div>
 
+    <!-- Скрипты (звёзды и модалка) -->
     <script>
-        // === Фоновые мерцающие звёзды (только фиолетовые) ===
+        // Здесь код создания фоновых и падающих звёзд (можно оставить как есть)
         function createBgStars() {
             const container = document.getElementById('bg-stars');
             const starCount = 150;
-
             const purpleColors = ['#8A2BE2', '#9B59B6', '#B48ABD', '#D291BC', '#E6E6FA', '#C77DFF', '#A020F0', '#967BB6'];
-
             for (let i = 0; i < starCount; i++) {
                 const star = document.createElement('div');
                 star.className = 'bg-star';
-
                 const size = Math.random() * 3 + 1;
                 star.style.width = size + 'px';
                 star.style.height = size + 'px';
-
                 star.style.left = Math.random() * 100 + '%';
                 star.style.top = Math.random() * 100 + '%';
-
                 const color = purpleColors[Math.floor(Math.random() * purpleColors.length)];
                 star.style.color = color;
                 star.style.backgroundColor = color;
-
-                const duration = Math.random() * 4 + 2; // 2-6 сек
-                const delay = Math.random() * 5; // 0-5 сек
+                const duration = Math.random() * 4 + 2;
+                const delay = Math.random() * 5;
                 star.style.animationDuration = duration + 's';
                 star.style.animationDelay = delay + 's';
-
                 container.appendChild(star);
             }
         }
 
-        // === Падающие звёзды (только фиолетовые, без задержки) ===
         function createShootingStar() {
             const container = document.getElementById('shooting-star-container');
             const star = document.createElement('div');
             star.classList.add('shooting-star');
-
-            const stars = ['★', '☆', '✧', '✦'];
-            star.textContent = stars[Math.floor(Math.random() * stars.length)];
-
+            const starSymbols = ['★', '☆', '✧', '✦'];
+            star.textContent = starSymbols[Math.floor(Math.random() * starSymbols.length)];
             const purpleColors = ['#8A2BE2', '#9B59B6', '#B48ABD', '#D291BC', '#E6E6FA', '#C77DFF', '#A020F0'];
             const color = purpleColors[Math.floor(Math.random() * purpleColors.length)];
             star.style.color = color;
             star.style.textShadow = `0 0 15px ${color}`;
-
-            const size = Math.random() * 2 + 1; // 1-3rem
+            const size = Math.random() * 2 + 1;
             star.style.fontSize = size + 'rem';
-
             star.style.left = Math.random() * 100 + '%';
-
-            const duration = Math.random() * 5 + 3; // 3-8 сек
+            const duration = Math.random() * 5 + 3;
             star.style.animationDuration = duration + 's';
-
-            // Убираем задержку, чтобы звезда падала сразу
             star.style.animationDelay = '0s';
-
             container.appendChild(star);
-
             setTimeout(() => {
                 star.remove();
             }, duration * 1000);
         }
 
         window.onload = () => {
-            createBgStars(); // фоновые
-
-            // Создаём падающие звёзды сразу несколько
+            createBgStars();
             for (let i = 0; i < 8; i++) {
                 setTimeout(createShootingStar, i * 300);
             }
-            // Затем каждые 400 мс
             setInterval(createShootingStar, 400);
         };
     </script>
-
+    <!-- Основной скрипт модалки -->
     <script src="script.js"></script>
 </body>
-
 </html>
