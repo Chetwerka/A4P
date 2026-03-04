@@ -30,11 +30,14 @@ header {
     margin-bottom: 10px;
 }
 
-.logo img {
-    width: 60px;
-    height: 60px;
+header img {
+    width: 80%;           /* занимает 80% ширины родителя (header) */
+    max-width: 600px;     /* но не больше 600px */
+    height: auto;         /* сохраняет пропорции */
     object-fit: contain;
-    filter: drop-shadow(0 0 5px #4caf50);
+    filter: drop-shadow(0 0 10px #4caf50);
+    margin-top: 20px;     /* отступ сверху, чтобы не прилипала к тексту */
+    margin-bottom: 20px;  /* отступ снизу */
 }
 
 .logo h1 {
@@ -200,3 +203,4 @@ footer {
     background-color: #45a049;
 
 }
+
