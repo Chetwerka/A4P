@@ -8,7 +8,33 @@
     <link rel="icon" href="https://static.wikia.nocookie.net/minecraft_gamepedia/images/4/4c/Grass_Block_JE5.png" type="image/png">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Контейнер только для падающих звёзд */
+        /* ===== Фоновые мерцающие звёзды (под всем) ===== */
+        #bg-stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0; /* под всем */
+            overflow: hidden;
+        }
+
+        .bg-star {
+            position: absolute;
+            background-color: currentColor;
+            border-radius: 50%;
+            box-shadow: 0 0 8px currentColor;
+            animation: twinkle linear infinite;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+            100% { opacity: 0.2; transform: scale(0.8); }
+        }
+
+        /* ===== Падающие звёзды (над всем контентом) ===== */
         #shooting-star-container {
             position: fixed;
             top: 0;
@@ -16,7 +42,7 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 9999;
+            z-index: 10000; /* выше всего */
             overflow: hidden;
         }
 
@@ -25,6 +51,8 @@
             font-size: 1.5rem;
             text-shadow: 0 0 15px currentColor;
             animation: fall linear forwards;
+            /* Начальная позиция чуть выше экрана */
+            transform: translateY(-10vh);
         }
 
         @keyframes fall {
@@ -40,7 +68,10 @@
     </style>
 </head>
 <body>
-    <!-- Только падающие звёзды, фоновых нет -->
+    <!-- Фоновые мерцающие звёзды (под всем) -->
+    <div id="bg-stars"></div>
+
+    <!-- Падающие звёзды (над всем) -->
     <div id="shooting-star-container"></div>
 
     <header>
@@ -89,51 +120,78 @@
     </div>
 
     <script>
+        // === Фоновые мерцающие звёзды (только фиолетовые) ===
+        function createBgStars() {
+            const container = document.getElementById('bg-stars');
+            const starCount = 150;
+
+            const purpleColors = ['#8A2BE2', '#9B59B6', '#B48ABD', '#D291BC', '#E6E6FA', '#C77DFF', '#A020F0', '#967BB6'];
+
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'bg-star';
+
+                const size = Math.random() * 3 + 1;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+
+                const color = purpleColors[Math.floor(Math.random() * purpleColors.length)];
+                star.style.color = color;
+                star.style.backgroundColor = color;
+
+                const duration = Math.random() * 4 + 2; // 2-6 сек
+                const delay = Math.random() * 5; // 0-5 сек
+                star.style.animationDuration = duration + 's';
+                star.style.animationDelay = delay + 's';
+
+                container.appendChild(star);
+            }
+        }
+
+        // === Падающие звёзды (только фиолетовые, без задержки) ===
         function createShootingStar() {
             const container = document.getElementById('shooting-star-container');
             const star = document.createElement('div');
             star.classList.add('shooting-star');
 
-            // Символы звёзд
             const stars = ['★', '☆', '✧', '✦', '⭐'];
             star.textContent = stars[Math.floor(Math.random() * stars.length)];
 
-            // ТОЛЬКО ФИОЛЕТОВЫЕ ЦВЕТА (ещё раз проверил — никакого жёлтого)
             const purpleColors = ['#8A2BE2', '#9B59B6', '#B48ABD', '#D291BC', '#E6E6FA', '#C77DFF', '#A020F0'];
             const color = purpleColors[Math.floor(Math.random() * purpleColors.length)];
             star.style.color = color;
             star.style.textShadow = `0 0 15px ${color}`;
 
-            // Размер от 1rem до 3rem
-            const size = Math.random() * 2 + 1;
+            const size = Math.random() * 2 + 1; // 1-3rem
             star.style.fontSize = size + 'rem';
 
-            // Случайная позиция слева
             star.style.left = Math.random() * 100 + '%';
 
-            // Длительность падения (3-8 сек)
-            const duration = Math.random() * 5 + 3;
+            const duration = Math.random() * 5 + 3; // 3-8 сек
             star.style.animationDuration = duration + 's';
 
-            // Задержка (0-5 сек)
-            const delay = Math.random() * 5;
-            star.style.animationDelay = delay + 's';
+            // Убираем задержку, чтобы звезда падала сразу
+            star.style.animationDelay = '0s';
 
             container.appendChild(star);
 
-            // Удалить звезду после анимации
             setTimeout(() => {
                 star.remove();
-            }, (duration + delay) * 1000);
+            }, duration * 1000);
         }
 
         window.onload = () => {
-            // Сразу несколько падающих звёзд
+            createBgStars(); // фоновые
+
+            // Создаём падающие звёзды сразу несколько
             for (let i = 0; i < 8; i++) {
                 setTimeout(createShootingStar, i * 300);
             }
-            // Затем каждые 600 мс
-            setInterval(createShootingStar, 600);
+            // Затем каждые 400 мс
+            setInterval(createShootingStar, 400);
         };
     </script>
 
