@@ -32,7 +32,7 @@ header {
 
 header img {
     width: 80%;           /* занимает 80% ширины родителя (header) */
-    max-width: 250px;     /* но не больше 600px */
+    max-width: 250px;     /* но не больше 250px */
     height: auto;         /* сохраняет пропорции */
     object-fit: contain;
     filter: drop-shadow(0 0 10px #4caf50);
@@ -203,6 +203,7 @@ footer {
     background-color: #45a049;
 
 }
+
 
 
 
