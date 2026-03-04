@@ -7,7 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="icon" href="https://static.wikia.nocookie.net/minecraft_gamepedia/images/4/4c/Grass_Block_JE5.png" type="image/png">
     <link rel="stylesheet" href="style.css">
-    <!-- Дополнительные стили для навигации (можно и в style.css, но для удобства здесь) -->
     <style>
         /* ===== Навигационные кнопки ===== */
         .nav-menu {
@@ -31,6 +30,7 @@
             transition: transform 0.2s, box-shadow 0.2s;
             border: 1px solid rgba(255,255,255,0.2);
             box-shadow: 0 4px 10px rgba(138, 43, 226, 0.3);
+            cursor: pointer; /* чтобы было видно, что кликабельно */
         }
 
         .nav-btn:hover {
@@ -39,66 +39,93 @@
             background: linear-gradient(135deg, #9B59B6, #8A2BE2);
         }
 
-        /* Адаптация для мобильных */
-        @media (max-width: 600px) {
-            .nav-menu {
-                gap: 8px;
-            }
-            .nav-btn {
-                padding: 6px 12px;
-                font-size: 0.9rem;
-            }
+        /* Активная кнопка (более яркая) */
+        .nav-btn.active {
+            background: linear-gradient(135deg, #E6E6FA, #9B59B6);
+            color: #1e1e2f;
+            box-shadow: 0 0 15px #E6E6FA;
         }
-/* ===== Контейнеры звёзд (исправление позиционирования) ===== */
-#bg-stars, #shooting-star-container {
-    position: fixed;    /* вырываем из потока */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none; /* чтобы не мешали кликать по кнопкам */
-    overflow: hidden;
-    z-index: 0;
-}
 
-#shooting-star-container {
-    z-index: 10000; /* падающие звёзды поверх всего */
-}
+        /* ===== Контейнеры звёзд ===== */
+        #bg-stars, #shooting-star-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+        #shooting-star-container { z-index: 10000; }
 
-/* ===== Стили самих звёзд ===== */
-.bg-star {
-    position: absolute;
-    background-color: currentColor;
-    border-radius: 50%;
-    box-shadow: 0 0 8px currentColor;
-    animation: twinkle linear infinite;
-}
+        .bg-star {
+            position: absolute;
+            background-color: currentColor;
+            border-radius: 50%;
+            box-shadow: 0 0 8px currentColor;
+            animation: twinkle linear infinite;
+        }
+        .shooting-star {
+            position: absolute;
+            font-size: 1.5rem;
+            text-shadow: 0 0 15px currentColor;
+            animation: fall linear forwards;
+            transform: translateY(-10vh);
+        }
 
-.shooting-star {
-    position: absolute;
-    font-size: 1.5rem;
-    text-shadow: 0 0 15px currentColor;
-    animation: fall linear forwards;
-    transform: translateY(-10vh);
-}
+        @keyframes twinkle {
+            0% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+            100% { opacity: 0.2; transform: scale(0.8); }
+        }
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0.2; }
+        }
 
-/* ===== Анимации ===== */
-@keyframes twinkle {
-    0% { opacity: 0.2; transform: scale(0.8); }
-    50% { opacity: 1; transform: scale(1.2); }
-    100% { opacity: 0.2; transform: scale(0.8); }
-}
+        /* ===== Переключаемые секции ===== */
+        .content-section {
+            display: none; /* по умолчанию скрыты */
+            animation: fade 0.3s ease;
+        }
+        .content-section.active {
+            display: block; /* показываем активную */
+        }
 
-@keyframes fall {
-    0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
-    100% { transform: translateY(110vh) rotate(360deg); opacity: 0.2; }
-}
+        @keyframes fade {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Стили для контента внутри секций (можно доработать) */
+        .rules-content, .wiki-content, .channels-content {
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(5px);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid #9B59B6;
+            color: #f0f0f0;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        .rules-content ul, .wiki-content ul, .channels-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .rules-content li, .wiki-content li, .channels-content li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .rules-content li::before, .wiki-content li::before, .channels-content li::before {
+            content: "♦";
+            color: #9B59B6;
+            margin-right: 10px;
+        }
     </style>
 </head>
 <body>
-    <!-- Фоновые мерцающие звёзды -->
     <div id="bg-stars"></div>
-    <!-- Падающие звёзды -->
     <div id="shooting-star-container"></div>
 
     <header>
@@ -107,12 +134,12 @@
         </div>
         <p class="tagline">All4Smp</p>
 
-        <!-- НАВИГАЦИОННЫЕ КНОПКИ -->
+        <!-- НАВИГАЦИОННЫЕ КНОПКИ (теперь это не ссылки, а кнопки для переключения) -->
         <div class="nav-menu">
-            <a href="#" class="nav-btn">Правила</a>
-            <a href="#" class="nav-btn">Вики</a>
-            <a href="#" class="nav-btn">Донат</a>
-            <a href="#" class="nav-btn">Каналы</a>
+            <button class="nav-btn active" data-section="donate">Донат</button>
+            <button class="nav-btn" data-section="rules">Правила</button>
+            <button class="nav-btn" data-section="wiki">Вики</button>
+            <button class="nav-btn" data-section="channels">Каналы</button>
         </div>
 
         <!-- Картинка -->
@@ -122,24 +149,66 @@
     </header>
 
     <main>
-        <h2>Донат-пакеты</h2>
-        <div class="donate-cards">
-            <div class="card">
-                <h3>
-                    <span style="background: linear-gradient(45deg, #8A2BE2, #E6E6FA, #8A2BE2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent; display: inline-block; margin-right: 5px;">♕</span>
-                    VIP (Месяц)
-                </h3>
-                <p class="price">150 руб.</p>
-                <ul>
-                    <li><span style="color: #9B59B6;">♦</span> дᴏᴄтупʜыᴇ ᴋᴏмᴀʜды</li>
-                    <li><span style="color: #9B59B6;">♦</span> иʜтᴇᴘȹᴇйᴄ утилизᴀции /ᴅɪsᴘᴏsᴀʟ</li>
-                    <li><span style="color: #9B59B6;">♦</span> ʜᴀдᴇть пᴘᴇдмᴇт ʜᴀ гᴏлᴏʙу /ᴇqᴜɪᴘ</li>
-                    <li><span style="color: #9B59B6;">♦</span> ᴄᴏᴘтиᴘᴏʙᴋᴀ ᴄуʜдуᴋᴏʙ /ᴄʜᴇsᴛsᴏʀᴛ</li>
-                    <li><span style="color: #9B59B6;">♦</span> ʙᴏᴄпᴏлʜить шᴋᴀлу гᴏлᴏдᴀ /ғᴇᴇᴅ</li>
-                    <li><span style="color: #9B59B6;">♦</span> дᴏпᴏлʜитᴇльʜᴏ</li>
-                    <li><span style="color: #9B59B6;">♦</span> зᴀxᴏд ʜᴀ зᴀпᴏлʜᴇʜʜый ᴄᴇᴘʙᴇᴘ.</li>
-                </ul>
-                <button class="buy-btn" data-package="VIP" data-price="150">Купить</button>
+        <!-- ===== КОНТЕЙНЕР ДЛЯ ПЕРЕКЛЮЧАЕМЫХ СЕКЦИЙ ===== -->
+        <div id="content-area">
+            <!-- Секция ДОНАТ (активна по умолчанию) -->
+            <div id="donate-section" class="content-section active">
+                <h2>Донат-пакеты</h2>
+                <div class="donate-cards">
+                    <div class="card">
+                        <h3>
+                            <span style="background: linear-gradient(45deg, #8A2BE2, #E6E6FA, #8A2BE2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent; display: inline-block; margin-right: 5px;">♕</span>
+                            VIP (Месяц)
+                        </h3>
+                        <p class="price">150 руб.</p>
+                        <ul>
+                            <li><span style="color: #9B59B6;">♦</span> дᴏᴄтупʜыᴇ ᴋᴏмᴀʜды</li>
+                            <li><span style="color: #9B59B6;">♦</span> иʜтᴇᴘȹᴇйᴄ утилизᴀции /ᴅɪsᴘᴏsᴀʟ</li>
+                            <li><span style="color: #9B59B6;">♦</span> ʜᴀдᴇть пᴘᴇдмᴇт ʜᴀ гᴏлᴏʙу /ᴇqᴜɪᴘ</li>
+                            <li><span style="color: #9B59B6;">♦</span> ᴄᴏᴘтиᴘᴏʙᴋᴀ ᴄуʜдуᴋᴏʙ /ᴄʜᴇsᴛsᴏʀᴛ</li>
+                            <li><span style="color: #9B59B6;">♦</span> ʙᴏᴄпᴏлʜить шᴋᴀлу гᴏлᴏдᴀ /ғᴇᴇᴅ</li>
+                            <li><span style="color: #9B59B6;">♦</span> дᴏпᴏлʜитᴇльʜᴏ</li>
+                            <li><span style="color: #9B59B6;">♦</span> зᴀxᴏд ʜᴀ зᴀпᴏлʜᴇʜʜый ᴄᴇᴘʙᴇᴘ.</li>
+                        </ul>
+                        <button class="buy-btn" data-package="VIP" data-price="150">Купить</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Секция ПРАВИЛА (скрыта) -->
+            <div id="rules-section" class="content-section">
+                <h2>Правила сервера</h2>
+                <div class="rules-content">
+                    <ul>
+                        <li>Не использовать читы и багоюзерство.</li>
+                        <li>Уважительно относиться к другим игрокам.</li>
+                        <li>Запрещён гриферство и воровство.</li>
+                        <li>Не спамить и не рекламировать.</li>
+                        <li>Соблюдать администрацию.</li>
+                        <li>Запрещены оскорбления и токсичность.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Секция ВИКИ (скрыта) -->
+            <div id="wiki-section" class="content-section">
+                <h2>Вики по серверу</h2>
+                <div class="wiki-content">
+                    <p>Здесь будет подробная информация о сервере, командах, особенностях и рецептах. Пока в разработке, но скоро всё появится!</p>
+                </div>
+            </div>
+
+            <!-- Секция КАНАЛЫ (скрыта) -->
+            <div id="channels-section" class="content-section">
+                <h2>Наши каналы</h2>
+                <div class="channels-content">
+                    <ul>
+                        <li>Discord: <a href="#" style="color:#9B59B6;">discord.gg/a4p</a></li>
+                        <li>Telegram: <a href="#" style="color:#9B59B6;">t.me/a4p</a></li>
+                        <li>YouTube: <a href="#" style="color:#9B59B6;">youtube.com/@a4p</a></li>
+                        <li>ВКонтакте: <a href="#" style="color:#9B59B6;">vk.com/a4p</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </main>
@@ -148,7 +217,7 @@
         <p>A4P-All4Smp 1.21.x | IP: 185.9.145.89:32258</p>
     </footer>
 
-    <!-- Модальное окно -->
+    <!-- Модальное окно (без изменений) -->
     <div id="modal" class="modal hidden">
         <div class="modal-content">
             <span class="close">&times;</span>
@@ -157,9 +226,9 @@
         </div>
     </div>
 
-    <!-- Скрипты (звёзды и модалка) -->
+    <!-- Скрипты -->
     <script>
-        // Здесь код создания фоновых и падающих звёзд (можно оставить как есть)
+        // ---------- ЗВЁЗДЫ (без изменений) ----------
         function createBgStars() {
             const container = document.getElementById('bg-stars');
             const starCount = 150;
@@ -205,16 +274,52 @@
             }, duration * 1000);
         }
 
-        window.onload = () => {
+        // ---------- ПЕРЕКЛЮЧЕНИЕ РАЗДЕЛОВ ----------
+        document.addEventListener('DOMContentLoaded', function() {
+            // Запуск звёзд
             createBgStars();
             for (let i = 0; i < 8; i++) {
                 setTimeout(createShootingStar, i * 300);
             }
             setInterval(createShootingStar, 400);
-        };
+
+            // Навигация
+            const navButtons = document.querySelectorAll('.nav-btn');
+            const sections = {
+                donate: document.getElementById('donate-section'),
+                rules: document.getElementById('rules-section'),
+                wiki: document.getElementById('wiki-section'),
+                channels: document.getElementById('channels-section')
+            };
+
+            function switchSection(sectionId) {
+                // Скрываем все секции
+                Object.values(sections).forEach(section => {
+                    section.classList.remove('active');
+                });
+                // Показываем нужную
+                if (sections[sectionId]) {
+                    sections[sectionId].classList.add('active');
+                }
+                // Убираем активный класс у всех кнопок
+                navButtons.forEach(btn => btn.classList.remove('active'));
+                // Добавляем активный класс нажатой кнопке
+                const activeButton = Array.from(navButtons).find(btn => btn.dataset.section === sectionId);
+                if (activeButton) activeButton.classList.add('active');
+            }
+
+            // Навешиваем обработчики на кнопки
+            navButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const sectionId = this.dataset.section;
+                    switchSection(sectionId);
+                });
+            });
+
+            // По умолчанию активен донат (уже active в HTML, но на всякий случай)
+            // Можно оставить как есть
+        });
     </script>
-    <!-- Основной скрипт модалки -->
     <script src="script.js"></script>
 </body>
 </html>
-
