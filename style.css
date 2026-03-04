@@ -7,7 +7,7 @@
 }
 
 body {
-    background: linear-gradient(135deg, #1e2b3a, #0f1a24);
+    background: linear-gradient(135deg, #2a1e3a, #1a0f24);
     color: #f0f0f0;
     min-height: 100vh;
     display: flex;
@@ -19,30 +19,30 @@ header {
     background-color: rgba(0, 0, 0, 0.7);
     padding: 20px;
     text-align: center;
-    border-bottom: 3px solid #4caf50;
+    border-bottom: 3px solid #9b59b6;
 }
 
 .logo {
     display: flex;
-    flex-direction: column;   /* вертикальное расположение */
-    align-items: center;      /* центрирование по горизонтали */
-    gap: 15px;                /* отступ между заголовком и картинкой (можешь подобрать нужный) */
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
     margin-bottom: 10px;
 }
 
 header img {
-    width: 80%;           /* занимает 80% ширины родителя (header) */
-    max-width: 250px;     /* но не больше 250px */
-    height: auto;         /* сохраняет пропорции */
+    width: 80%;
+    max-width: 250px;      /* оставил твой размер */
+    height: auto;
     object-fit: contain;
-    filter: drop-shadow(0 0 10px #4caf50);
-    margin-top: 20px;     /* отступ сверху, чтобы не прилипала к тексту */
-    margin-bottom: 20px;  /* отступ снизу */
+    filter: drop-shadow(0 0 10px #9b59b6);
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .logo h1 {
     font-size: 2.5rem;
-    text-shadow: 2px 2px 0 #2a5c2a;
+    text-shadow: 2px 2px 0 #4a2c5a;
 }
 
 .tagline {
@@ -63,8 +63,8 @@ main h2 {
     text-align: center;
     margin-bottom: 30px;
     font-size: 2rem;
-    color: #ffd966;
-    text-shadow: 1px 1px 0 #b8860b;
+    color: #dcd0ff;
+    text-shadow: 1px 1px 0 #a58bc0;
 }
 
 /* Карточки доната */
@@ -78,7 +78,7 @@ main h2 {
 .card {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
-    border: 2px solid #4caf50;
+    border: 2px solid #9b59b6;
     border-radius: 15px;
     padding: 20px;
     width: 280px;
@@ -89,19 +89,19 @@ main h2 {
 
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 12px 40px rgba(76, 175, 80, 0.4);
+    box-shadow: 0 12px 40px rgba(155, 89, 182, 0.4);
 }
 
 .card h3 {
     font-size: 1.8rem;
     margin-bottom: 5px;
-    color: #ffd966;
+    color: #dcd0ff;
 }
 
 .card .price {
     font-size: 2rem;
     font-weight: bold;
-    color: #4caf50;
+    color: #9b59b6;
     margin-bottom: 15px;
 }
 
@@ -116,7 +116,7 @@ main h2 {
 }
 
 .buy-btn {
-    background-color: #4caf50;
+    background-color: #9b59b6;
     color: white;
     border: none;
     padding: 12px 30px;
@@ -129,7 +129,7 @@ main h2 {
 }
 
 .buy-btn:hover {
-    background-color: #45a049;
+    background-color: #8e44ad;
     transform: scale(1.02);
 }
 
@@ -139,7 +139,7 @@ footer {
     text-align: center;
     padding: 15px;
     font-size: 1rem;
-    border-top: 2px solid #4caf50;
+    border-top: 2px solid #9b59b6;
 }
 
 /* Модальное окно (демо-уведомление) */
@@ -164,7 +164,7 @@ footer {
     background: #1e2b3a;
     padding: 30px;
     border-radius: 15px;
-    border: 2px solid #4caf50;
+    border: 2px solid #9b59b6;
     max-width: 400px;
     width: 90%;
     text-align: center;
@@ -190,7 +190,7 @@ footer {
 }
 
 #modal-close {
-    background-color: #4caf50;
+    background-color: #9b59b6;
     color: white;
     border: none;
     padding: 10px 25px;
@@ -200,10 +200,5 @@ footer {
 }
 
 #modal-close:hover {
-    background-color: #45a049;
-
+    background-color: #8e44ad;
 }
-
-
-
-
