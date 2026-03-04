@@ -8,7 +8,7 @@
     <link rel="icon" href="https://static.wikia.nocookie.net/minecraft_gamepedia/images/4/4c/Grass_Block_JE5.png" type="image/png">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* ===== Общие стили (можно оставить в style.css, но для примера здесь) ===== */
+        /* ===== Общие стили ===== */
         * {
             margin: 0;
             padding: 0;
@@ -28,42 +28,40 @@
         header {
             background-color: rgba(0, 0, 0, 0.7);
             padding: 20px 20px 30px;
-            border-bottom: 3px solid #4caf50;
+            border-bottom: 3px solid #9B59B6; /* фиолетовая полоса */
             text-align: center;
         }
 
-        /* Верхняя строка с логотипом и кнопками */
         .header-top {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
+            gap: 10px;
             flex-wrap: wrap;
-            gap: 15px;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
         .logo h1 {
             font-size: 2.5rem;
-            text-shadow: 2px 2px 0 #2a5c2a;
+            text-shadow: 2px 2px 0 #4B2E5C; /* тёмно-фиолетовый */
+            margin: 0 10px;
         }
 
-        /* Стили для групп кнопок */
         .nav-left, .nav-right {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             flex-wrap: wrap;
             justify-content: center;
         }
 
-        /* Общие стили кнопок */
         .nav-btn {
             background: linear-gradient(135deg, #8A2BE2, #9B59B6);
             color: white;
             text-decoration: none;
             font-weight: 600;
-            padding: 8px 20px;
+            padding: 6px 16px;
             border-radius: 50px;
-            font-size: 1rem;
+            font-size: 0.95rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             transition: transform 0.2s, box-shadow 0.2s;
@@ -86,17 +84,16 @@
             box-shadow: 0 0 15px #E6E6FA;
         }
 
-        /* Адаптация для мобильных */
         @media (max-width: 700px) {
             .header-top {
                 flex-direction: column;
+                gap: 5px;
             }
-            .nav-left, .nav-right {
-                justify-content: center;
+            .logo h1 {
+                margin: 5px 0;
             }
         }
 
-        /* Tagline и картинка */
         .tagline {
             font-size: 1.2rem;
             color: #ccc;
@@ -155,7 +152,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Карточки доната (твои существующие стили) */
+        /* ===== Карточки доната (ФИОЛЕТОВАЯ ТЕМА) ===== */
         .donate-cards {
             display: flex;
             flex-wrap: wrap;
@@ -167,7 +164,7 @@
         .card {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            border: 2px solid #4caf50;
+            border: 2px solid #9B59B6; /* фиолетовая рамка */
             border-radius: 15px;
             padding: 20px;
             width: 280px;
@@ -178,19 +175,19 @@
 
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 12px 40px rgba(76, 175, 80, 0.4);
+            box-shadow: 0 12px 40px rgba(155, 89, 182, 0.5); /* фиолетовое свечение */
         }
 
         .card h3 {
             font-size: 1.8rem;
             margin-bottom: 5px;
-            color: #ffd966;
+            color: #ffd966; /* оставил жёлтый для контраста, можно заменить на #E6E6FA */
         }
 
         .price {
             font-size: 2rem;
             font-weight: bold;
-            color: #4caf50;
+            color: #9B59B6; /* фиолетовая цена */
             margin-bottom: 15px;
         }
 
@@ -205,7 +202,7 @@
         }
 
         .buy-btn {
-            background-color: #4caf50;
+            background: linear-gradient(135deg, #8A2BE2, #9B59B6); /* фиолетовый градиент */
             color: white;
             border: none;
             padding: 12px 30px;
@@ -213,13 +210,15 @@
             border-radius: 50px;
             cursor: pointer;
             font-weight: bold;
-            transition: background 0.3s, transform 0.2s;
+            transition: transform 0.2s, box-shadow 0.2s;
             width: 100%;
+            box-shadow: 0 4px 10px rgba(138, 43, 226, 0.3);
         }
 
         .buy-btn:hover {
-            background-color: #45a049;
             transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(138, 43, 226, 0.6);
+            background: linear-gradient(135deg, #9B59B6, #8A2BE2);
         }
 
         /* Стили для секций правил, вики, каналов */
@@ -243,7 +242,7 @@
             padding: 8px 0;
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
-        .rules-content li::before, .wiki-content li::before, .channels-content li::before {
+        .rules-content li::before, .wiki-content li::before, .wiki-content li::before, .channels-content li::before {
             content: "♦";
             color: #9B59B6;
             margin-right: 10px;
@@ -261,11 +260,11 @@
             text-align: center;
             padding: 15px;
             font-size: 1rem;
-            border-top: 2px solid #4caf50;
+            border-top: 2px solid #9B59B6; /* фиолетовая полоса */
             margin-top: auto;
         }
 
-        /* Модальное окно (без изменений) */
+        /* Модальное окно (тоже фиолетовый акцент) */
         .modal {
             display: flex;
             align-items: center;
@@ -283,7 +282,7 @@
             background: #1e2b3a;
             padding: 30px;
             border-radius: 15px;
-            border: 2px solid #4caf50;
+            border: 2px solid #9B59B6; /* фиолетовая рамка */
             max-width: 400px;
             width: 90%;
             text-align: center;
@@ -299,7 +298,7 @@
         }
         .close:hover { color: white; }
         #modal-close {
-            background-color: #4caf50;
+            background: linear-gradient(135deg, #8A2BE2, #9B59B6);
             color: white;
             border: none;
             padding: 10px 25px;
@@ -307,7 +306,9 @@
             cursor: pointer;
             font-size: 1rem;
         }
-        #modal-close:hover { background-color: #45a049; }
+        #modal-close:hover {
+            background: linear-gradient(135deg, #9B59B6, #8A2BE2);
+        }
     </style>
 </head>
 <body>
@@ -315,7 +316,6 @@
     <div id="shooting-star-container"></div>
 
     <header>
-        <!-- Верхняя строка: левые кнопки - логотип - правые кнопки -->
         <div class="header-top">
             <div class="nav-left">
                 <button class="nav-btn" data-section="rules">Правила</button>
@@ -334,7 +334,6 @@
 
         <p class="tagline">All4Smp</p>
 
-        <!-- Картинка -->
         <div style="text-align: center;">
             <img src="https://raw.githubusercontent.com/Chetwerka/A4P/main/A4Plogo.png" alt="Логотип" style="max-width: 200px;">
         </div>
@@ -342,7 +341,7 @@
 
     <main>
         <div id="content-area">
-            <!-- Секция ДОНАТ (активна по умолчанию) -->
+            <!-- Донат (активен по умолчанию) -->
             <div id="donate-section" class="content-section active">
                 <h2 style="text-align: center;">Донат-пакеты</h2>
                 <div class="donate-cards">
@@ -366,7 +365,7 @@
                 </div>
             </div>
 
-            <!-- Секция ПРАВИЛА -->
+            <!-- Правила -->
             <div id="rules-section" class="content-section">
                 <h2 style="text-align: center;">Правила сервера</h2>
                 <div class="rules-content">
@@ -381,7 +380,7 @@
                 </div>
             </div>
 
-            <!-- Секция ВИКИ -->
+            <!-- Вики -->
             <div id="wiki-section" class="content-section">
                 <h2 style="text-align: center;">Вики по серверу</h2>
                 <div class="wiki-content">
@@ -389,7 +388,7 @@
                 </div>
             </div>
 
-            <!-- Секция КАНАЛЫ -->
+            <!-- Каналы -->
             <div id="channels-section" class="content-section">
                 <h2 style="text-align: center;">Наши каналы</h2>
                 <div class="channels-content">
@@ -418,7 +417,7 @@
     </div>
 
     <script>
-        // ---------- ЗВЁЗДЫ ----------
+        // Звёзды
         function createBgStars() {
             const container = document.getElementById('bg-stars');
             const starCount = 150;
@@ -464,7 +463,7 @@
             }, duration * 1000);
         }
 
-        // ---------- ПЕРЕКЛЮЧЕНИЕ РАЗДЕЛОВ ----------
+        // Переключение разделов и модалка
         document.addEventListener('DOMContentLoaded', function() {
             createBgStars();
             for (let i = 0; i < 8; i++) {
@@ -481,12 +480,8 @@
             };
 
             function switchSection(sectionId) {
-                Object.values(sections).forEach(section => {
-                    section.classList.remove('active');
-                });
-                if (sections[sectionId]) {
-                    sections[sectionId].classList.add('active');
-                }
+                Object.values(sections).forEach(section => section.classList.remove('active'));
+                if (sections[sectionId]) sections[sectionId].classList.add('active');
                 navButtons.forEach(btn => btn.classList.remove('active'));
                 const activeButton = Array.from(navButtons).find(btn => btn.dataset.section === sectionId);
                 if (activeButton) activeButton.classList.add('active');
@@ -494,14 +489,11 @@
 
             navButtons.forEach(btn => {
                 btn.addEventListener('click', function() {
-                    const sectionId = this.dataset.section;
-                    switchSection(sectionId);
+                    switchSection(this.dataset.section);
                 });
             });
-        });
 
-        // Модальное окно (из script.js) – оставь как есть
-        document.addEventListener('DOMContentLoaded', function() {
+            // Модальное окно
             const modal = document.getElementById('modal');
             const modalMessage = document.getElementById('modal-message');
             const closeBtn = document.querySelector('.close');
@@ -518,22 +510,14 @@
 
             closeBtn.addEventListener('click', closeModal);
             modalClose.addEventListener('click', closeModal);
-            window.addEventListener('click', function(event) {
-                if (event.target === modal) {
-                    closeModal();
-                }
-            });
+            window.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
 
-            const buyButtons = document.querySelectorAll('.buy-btn');
-            buyButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const pkg = this.getAttribute('data-package');
-                    const price = this.getAttribute('data-price');
-                    showModal(`Вы выбрали пакет "${pkg}" за ${price} руб.\nВ реальном проекте здесь будет переход к оплате.`);
+            document.querySelectorAll('.buy-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    showModal(`Вы выбрали пакет "${this.dataset.package}" за ${this.dataset.price} руб.\nВ реальном проекте здесь будет переход к оплате.`);
                 });
             });
         });
     </script>
-    <!-- Если используешь отдельный script.js, он тоже подключится, но код модалки уже здесь -->
 </body>
 </html>
