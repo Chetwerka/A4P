@@ -28,7 +28,7 @@
         header {
             background-color: rgba(0, 0, 0, 0.7);
             padding: 20px 20px 30px;
-            border-bottom: 3px solid #9B59B6; /* фиолетовая полоса */
+            border-bottom: 3px solid #9B59B6;
             text-align: center;
         }
 
@@ -43,7 +43,7 @@
 
         .logo h1 {
             font-size: 2.5rem;
-            text-shadow: 2px 2px 0 #4B2E5C; /* тёмно-фиолетовый */
+            text-shadow: 2px 2px 0 #4B2E5C;
             margin: 0 10px;
         }
 
@@ -152,7 +152,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* ===== Карточки доната (ФИОЛЕТОВАЯ ТЕМА) ===== */
+        /* ===== Карточки доната ===== */
         .donate-cards {
             display: flex;
             flex-wrap: wrap;
@@ -164,7 +164,7 @@
         .card {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            border: 2px solid #9B59B6; /* фиолетовая рамка */
+            border: 2px solid #9B59B6;
             border-radius: 15px;
             padding: 20px;
             width: 280px;
@@ -175,19 +175,19 @@
 
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 12px 40px rgba(155, 89, 182, 0.5); /* фиолетовое свечение */
+            box-shadow: 0 12px 40px rgba(155, 89, 182, 0.5);
         }
 
         .card h3 {
             font-size: 1.8rem;
             margin-bottom: 5px;
-            color: #ffd966; /* оставил жёлтый для контраста, можно заменить на #E6E6FA */
+            color: #ffd966;
         }
 
         .price {
             font-size: 2rem;
             font-weight: bold;
-            color: #9B59B6; /* фиолетовая цена */
+            color: #9B59B6;
             margin-bottom: 15px;
         }
 
@@ -202,7 +202,7 @@
         }
 
         .buy-btn {
-            background: linear-gradient(135deg, #8A2BE2, #9B59B6); /* фиолетовый градиент */
+            background: linear-gradient(135deg, #8A2BE2, #9B59B6);
             color: white;
             border: none;
             padding: 12px 30px;
@@ -221,7 +221,7 @@
             background: linear-gradient(135deg, #9B59B6, #8A2BE2);
         }
 
-        /* Стили для секций правил, вики, каналов */
+        /* ===== Стили для секций правил, вики, каналов ===== */
         .rules-content, .wiki-content, .channels-content {
             background: rgba(0,0,0,0.3);
             backdrop-filter: blur(5px);
@@ -234,15 +234,91 @@
             max-width: 800px;
             margin: 0 auto;
         }
-        .rules-content ul, .wiki-content ul, .channels-content ul {
+
+        /* Специальные стили для сворачиваемых категорий в правилах */
+        .rules-content details {
+            margin-bottom: 12px;
+            border: 1px solid #9B59B6;
+            border-radius: 10px;
+            background: rgba(0,0,0,0.2);
+            backdrop-filter: blur(5px);
+        }
+
+        .rules-content summary {
+            padding: 12px 15px;
+            font-weight: 600;
+            color: #f0f0f0;
+            cursor: pointer;
+            list-style: none; /* убираем стандартный треугольник */
+            user-select: none;
+            border-radius: 10px;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .rules-content summary:hover {
+            background: rgba(155, 89, 182, 0.3);
+        }
+
+        /* Кастомный маркер (ромбик) */
+        .rules-content summary::before {
+            content: "♦";
+            color: #9B59B6;
+            font-size: 1.2rem;
+            transition: transform 0.2s;
+        }
+
+        .rules-content details[open] summary::before {
+            transform: rotate(90deg);
+        }
+
+        /* Убираем стандартный маркер в WebKit-браузерах */
+        .rules-content summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .rules-content details[open] summary {
+            border-bottom: 1px solid #9B59B6;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .rules-content details ul {
+            padding: 15px 20px;
+            margin: 0;
+        }
+
+        .rules-content details ul li {
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 8px 0;
+            list-style: none;
+        }
+
+        .rules-content details ul li::before {
+            content: "♦";
+            color: #9B59B6;
+            margin-right: 10px;
+        }
+
+        .rules-content details ul li:last-child {
+            border-bottom: none;
+        }
+
+        /* Вики и каналы (без изменений) */
+        .wiki-content p {
+            margin-bottom: 15px;
+        }
+
+        .channels-content ul {
             list-style: none;
             padding-left: 0;
         }
-        .rules-content li, .wiki-content li, .channels-content li {
+        .channels-content li {
             padding: 8px 0;
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
-        .rules-content li::before, .wiki-content li::before, .wiki-content li::before, .channels-content li::before {
+        .channels-content li::before {
             content: "♦";
             color: #9B59B6;
             margin-right: 10px;
@@ -260,11 +336,11 @@
             text-align: center;
             padding: 15px;
             font-size: 1rem;
-            border-top: 2px solid #9B59B6; /* фиолетовая полоса */
+            border-top: 2px solid #9B59B6;
             margin-top: auto;
         }
 
-        /* Модальное окно (тоже фиолетовый акцент) */
+        /* Модальное окно */
         .modal {
             display: flex;
             align-items: center;
@@ -282,7 +358,7 @@
             background: #1e2b3a;
             padding: 30px;
             border-radius: 15px;
-            border: 2px solid #9B59B6; /* фиолетовая рамка */
+            border: 2px solid #9B59B6;
             max-width: 400px;
             width: 90%;
             text-align: center;
@@ -341,7 +417,7 @@
 
     <main>
         <div id="content-area">
-            <!-- Донат (активен по умолчанию) -->
+            <!-- Донат -->
             <div id="donate-section" class="content-section active">
                 <h2 style="text-align: center;">Донат-пакеты</h2>
                 <div class="donate-cards">
@@ -365,18 +441,80 @@
                 </div>
             </div>
 
-            <!-- Правила -->
+            <!-- Правила с категориями -->
             <div id="rules-section" class="content-section">
                 <h2 style="text-align: center;">Правила сервера</h2>
                 <div class="rules-content">
-                    <ul>
-                        <li>Не использовать читы и багоюзерство.</li>
-                        <li>Уважительно относиться к другим игрокам.</li>
-                        <li>Запрещён гриферство и воровство.</li>
-                        <li>Не спамить и не рекламировать.</li>
-                        <li>Соблюдать администрацию.</li>
-                        <li>Запрещены оскорбления и токсичность.</li>
-                    </ul>
+                    <details>
+            <!-- Правила с категориями (твои правила) -->
+            <div id="rules-section" class="content-section">
+                <h2 style="text-align: center;">Правила сервера</h2>
+                <div class="rules-content">
+                    <!-- Категория 1: КАТЕГОРИЧЕСКИ ЗАПРЕЩЕНО (общее) -->
+                    <details>
+                        <summary>❌ КАТЕГОРИЧЕСКИ ЗАПРЕЩЕНО</summary>
+                        <ul>
+                            <li>1.1 Публикация контента 18+</li>
+                            <li>1.2 Пропаганда и демонстрирование нацистской символики или символики, сходной с ней до степени смешения в ЛЮБОМ смысле, даже в шутку</li>
+                            <li>1.3 Пропаганда садизма, мазохизма; призыв к суициду в ЛЮБОМ смысле, даже в шутку</li>
+                            <li>1.4 Пропаганда жестокого обращения с животными в ЛЮБОМ смысле, даже в шутку</li>
+                            <li>1.5 Поиск и публикация личной информации о том или ином человеке без его разрешения (ФИО, адрес, номер телефона и т.д.)</li>
+                            <li>1.6 Реклама или продажа чего-либо в ЛЮБОЙ форме, включая ваш профиль в дискорде или телеграме</li>
+                            <li>1.7 Любым образом обходить правила или предупреждения от модераторов</li>
+                            <li>1.8 Запрещено использовать ники модерации и представляться ею</li>
+                            <li>1.9 Использование каких либо чит клиентов</li>
+                        </ul>
+                    </details>
+
+                    <!-- Категория 2: Правила чата — Не рекомендуется -->
+                    <details>
+                        <summary>💬 Правила чата — Не рекомендуется</summary>
+                        <ul>
+                            <li>1.1 Спамить в чате ТГ. канала/ДС. канала (Мут на 10 минут, при повторении мут на час)</li>
+                            <li>1.2 Злоупотреблять капсом/флудом (Выговор, мут 5 минут, мут 15 минут)</li>
+                            <li>1.3 Оскорблять равных себе (Мут на час)</li>
+                            <li>1.4 Злоупотреблять матом/завуалированным матом</li>
+                            <li>1.5 Оскорблять выше себя по званию (Мут на 90 минут)</li>
+                            <li>1.6 Использование грубых слов в целях оскорбить личность человека</li>
+                            <li>1.7 Дискриминация по расовому, национальному, религиозному или иному признаку</li>
+                            <li>1.8 Пропаганда оружия, наркотиков, алкоголя и курения и т.д.</li>
+                            <li>1.9 Пропаганда ЛГБТ</li>
+                            <li>1.10 Клевета, голословные обвинения, распространение ложной информации</li>
+                            <li>1.11 Запрещается прямо и косвенно оскорблять других пользователей в чате, хамить пользователям и администрации</li>
+                            <li>1.12 Угрозы и оскорбления, в том числе шуточные</li>
+                            <li>1.13 Обсуждение политики</li>
+                            <li>1.14 Злоупотреблять смайлами (5 и более сообщений подряд)</li>
+                            <li>1.15 Игнорировать предупреждения и просьбы модераторов чата</li>
+                            <li>1.16 Злоупотреблять иностранной речью</li>
+                        </ul>
+                    </details>
+
+                    <!-- Категория 3: Правила чата — КАТЕГОРИЧЕСКИ ЗАПРЕЩЕНО -->
+                    <details>
+                        <summary>⛔ Правила чата — КАТЕГОРИЧЕСКИ ЗАПРЕЩЕНО</summary>
+                        <ul>
+                            <li>2.1 Рекламировать чужие проекты (Мут на сутки)</li>
+                            <li>2.2 Вынуждать человека нарушать правила (Выговор)</li>
+                            <li>2.3 Угрожать убийством (Перманентный бан на всех проектах)</li>
+                            <li>2.4 Оскорбление родственного дерева в любой форме (Мут на 12 часов)</li>
+                        </ul>
+                    </details>
+
+                    <!-- Категория 4: Дополнительно -->
+                    <details>
+                        <summary>📌 Дополнительно</summary>
+                        <ul>
+                            <li>Незнание правил не освобождает вас от ответственности.</li>
+                            <li>Модерация никогда не станет просить у вас в личных сообщениях деньги. Если видите такого модератора, обязательно сообщите другим модераторам.</li>
+                            <li>Если модератор считает, что какое-либо действие пользователя мешает остальным пользователям, он обязан предупредить пользователя о недопустимости такого поведения.</li>
+                            <li>Администрация имеет право вносить изменения в правила на свое усмотрение при условии совещания с ст.модератором.</li>
+                            <li>Разрешена отправка GIF-ок только при помощи основного инструмента Discord/Telegram. Содержание GIF-ок должно быть в рамках правил сервера.</li>
+                            <li>Модерацие проекта КАТЕГОРИЧЕСКИ запрещено брать ресурсы из гм 1.</li>
+                            <li>Если вы нашли забаганые ресы, вы должны сообщить об этом модерации и удалить их любым из способов.</li>
+                            <li>Также, если вы заметили не соблюдение правил проекта каким либо модером, вы обязаны сообщить об этом администрации (@Chemerko4).</li>
+                            <li>Правила чата также распространяются на: Чат телеграм канала; Чат Дискорд канала; Чат Майнкрафт сервера.</li>
+                        </ul>
+                    </details>
                 </div>
             </div>
 
@@ -388,18 +526,19 @@
                 </div>
             </div>
 
-<!-- Каналы (только названия как ссылки) -->
-<div id="channels-section" class="content-section">
-    <h2 style="text-align: center;">Наши каналы</h2>
-    <div class="channels-content">
-        <ul>
-            <li><a href="https://discord.gg/uwzkdsDdMj" target="_blank" rel="noopener">Discord</a></li>
-            <li><a href="https://t.me/All4Smp" target="_blank" rel="noopener">Telegram</a></li>
-            <li><a href="https://www.youtube.com/channel/UC1tJeYGB1d4DLrqcr4ko8mQ" target="_blank" rel="noopener">YouTube</a></li>
-            <li><a href="https://vk.com/All4Smp" target="_blank" rel="noopener">ВКонтакте</a></li>
-        </ul>
-    </div>
-</div>
+            <!-- Каналы (только названия) -->
+            <div id="channels-section" class="content-section">
+                <h2 style="text-align: center;">Наши каналы</h2>
+                <div class="channels-content">
+                    <ul>
+                        <li><a href="https://discord.gg/uwzkdsDdMj" target="_blank" rel="noopener">Discord</a></li>
+                        <li><a href="https://t.me/All4Smp" target="_blank" rel="noopener">Telegram</a></li>
+                        <li><a href="https://www.youtube.com/channel/UC1tJeYGB1d4DLrqcr4ko8mQ" target="_blank" rel="noopener">YouTube</a></li>
+                        <li><a href="https://vk.com/All4Smp" target="_blank" rel="noopener">ВКонтакте</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </main>
 
     <footer>
@@ -520,5 +659,3 @@
     </script>
 </body>
 </html>
-
-
