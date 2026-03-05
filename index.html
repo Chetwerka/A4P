@@ -393,17 +393,17 @@
 
     <header>
         <div class="header-top">
-    <div class="nav-left">
-    <button class="nav-btn" data-section="rules">Правила</button>
-    <button class="nav-btn active" data-section="wiki">Вики</button>
-</div>
+            <div class="nav-left">
+                <button class="nav-btn" data-section="rules">Правила</button>
+                <button class="nav-btn active" data-section="wiki">Вики</button>
+            </div>
 
             <div class="logo">
                 <h1>A4P</h1>
             </div>
 
             <div class="nav-right">
-                <button class="nav-btn active" data-section="donate">Донат</button>
+                <button class="nav-btn" data-section="donate">Донат</button>
                 <button class="nav-btn" data-section="channels">Каналы</button>
             </div>
         </div>
@@ -417,8 +417,8 @@
 
     <main>
         <div id="content-area">
-            <!-- Донат -->
-            <div id="donate-section" class="content-section active">
+            <!-- Донат (теперь не активен) -->
+            <div id="donate-section" class="content-section">
                 <h2 style="text-align: center;">Донат-пакеты</h2>
                 <div class="donate-cards">
                     <div class="card">
@@ -441,7 +441,7 @@
                 </div>
             </div>
 
-                       <!-- Правила с категориями + подсказка -->
+            <!-- Правила с категориями + подсказка -->
             <div id="rules-section" class="content-section">
                 <h2 style="text-align: center;">Правила сервера</h2>
                 <div class="rules-content">
@@ -518,10 +518,8 @@
                 </div>
             </div>
 
-
-                        
-            <!-- Вики -->
-            <div id="wiki-section" class="content-section">
+            <!-- Вики (активна по умолчанию) -->
+            <div id="wiki-section" class="content-section active">
                 <h2 style="text-align: center;">Вики по серверу</h2>
                 <div class="wiki-content">
                     <p>Здесь будет подробная информация о сервере, командах, особенностях и рецептах. Пока в разработке, но скоро всё появится!</p>
@@ -661,6 +659,3 @@
     </script>
 </body>
 </html>
-
-
-
