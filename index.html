@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A4P | Оффициальный сайт</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- Favicon теперь такая же, как была аватарка -->
-    <link rel="icon" href="https://raw.githubusercontent.com/Chetwerka/A4P/main/A4Plogo.png" type="image/png">
+
+    <!-- Favicon: луна с незер-звездой (SVG) -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%239B59B6' /%3E%3Cpath d='M30 20 Q 50 10 70 20 Q 80 40 70 60 Q 50 75 30 60 Q 18 40 30 20' fill='%23E6E6FA' opacity='0.9' /%3E%3Cpolygon points='50,35 58,52 77,55 63,67 67,86 50,75 33,86 37,67 23,55 42,52' fill='%23FFD966' /%3E%3C/svg%3E" type="image/svg+xml">
+
     <link rel="stylesheet" href="style.css">
     <style>
         /* ===== Общие стили ===== */
@@ -40,6 +42,41 @@
             gap: 10px;
             flex-wrap: wrap;
             margin-bottom: 10px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Контейнер для луны со звездой */
+        .moon-star {
+            position: relative;
+            width: 42px;
+            height: 42px;
+            display: inline-block;
+        }
+
+        .moon {
+            font-size: 3rem;
+            line-height: 1;
+            color: #E6E6FA; /* лавандовая луна */
+            filter: drop-shadow(0 0 5px #9B59B6);
+            transform: rotate(-20deg); /* немного наклона */
+            display: block;
+        }
+
+        .star {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(10deg);
+            font-size: 1.8rem;
+            color: #FFD966; /* золотая незер-звезда */
+            text-shadow: 0 0 8px #FFD966;
+            line-height: 1;
+            pointer-events: none; /* чтобы не мешала кликам */
         }
 
         .logo h1 {
@@ -396,7 +433,11 @@
             </div>
 
             <div class="logo">
-                <!-- Аватарка УДАЛЕНА — теперь только название -->
+                <!-- Луна с незер-звездой -->
+                <div class="moon-star">
+                    <span class="moon">🌙</span>
+                    <span class="star">★</span>
+                </div>
                 <h1>A4P</h1>
             </div>
 
