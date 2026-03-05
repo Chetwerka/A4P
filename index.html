@@ -41,10 +41,24 @@
             margin-bottom: 10px;
         }
 
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #9B59B6;
+        }
+
         .logo h1 {
             font-size: 2.5rem;
             text-shadow: 2px 2px 0 #4B2E5C;
-            margin: 0 10px;
+            margin: 0;
         }
 
         .nav-left, .nav-right {
@@ -249,7 +263,7 @@
             font-weight: 600;
             color: #f0f0f0;
             cursor: pointer;
-            list-style: none; /* убираем стандартный треугольник */
+            list-style: none;
             user-select: none;
             border-radius: 10px;
             transition: background 0.2s;
@@ -262,7 +276,6 @@
             background: rgba(155, 89, 182, 0.3);
         }
 
-        /* Кастомный маркер (ромбик) */
         .rules-content summary::before {
             content: "♦";
             color: #9B59B6;
@@ -274,7 +287,6 @@
             transform: rotate(90deg);
         }
 
-        /* Убираем стандартный маркер в WebKit-браузерах */
         .rules-content summary::-webkit-details-marker {
             display: none;
         }
@@ -305,7 +317,6 @@
             border-bottom: none;
         }
 
-        /* Вики и каналы (без изменений) */
         .wiki-content p {
             margin-bottom: 15px;
         }
@@ -340,7 +351,6 @@
             margin-top: auto;
         }
 
-        /* Модальное окно */
         .modal {
             display: flex;
             align-items: center;
@@ -399,6 +409,8 @@
             </div>
 
             <div class="logo">
+                <!-- АВАТАРКА (замени ссылку на свою) -->
+                <img src="https://raw.githubusercontent.com/Chetwerka/A4P/main/A4Plogo.png" alt="Avatar">
                 <h1>A4P</h1>
             </div>
 
@@ -417,7 +429,7 @@
 
     <main>
         <div id="content-area">
-            <!-- Донат (теперь не активен) -->
+            <!-- Донат -->
             <div id="donate-section" class="content-section">
                 <h2 style="text-align: center;">Донат-пакеты</h2>
                 <div class="donate-cards">
@@ -441,16 +453,14 @@
                 </div>
             </div>
 
-            <!-- Правила с категориями + подсказка -->
+            <!-- Правила -->
             <div id="rules-section" class="content-section">
                 <h2 style="text-align: center;">Правила сервера</h2>
                 <div class="rules-content">
-                    <!-- Подсказка -->
                     <p style="color: #ccc; text-align: center; margin-bottom: 15px; font-style: italic;">
                         👆 Нажми на заголовок, чтобы раскрыть категорию
                     </p>
 
-                    <!-- Категория 1: КАТЕГОРИЧЕСКИ ЗАПРЕЩЕНО (общее) -->
                     <details>
                         <summary>❌ КАТЕГОРИЧЕСКИ ЗАПРЕЩЕНО</summary>
                         <ul>
@@ -466,7 +476,6 @@
                         </ul>
                     </details>
 
-                    <!-- Категория 2: Правила чата — Не рекомендуется -->
                     <details>
                         <summary>💬 Правила чата — Не рекомендуется</summary>
                         <ul>
@@ -489,7 +498,6 @@
                         </ul>
                     </details>
 
-                    <!-- Категория 3: Правила чата — КАТЕГОРИЧЕСКИ ЗАПРЕЩЕНО -->
                     <details>
                         <summary>⛔ Правила чата — КАТЕГОРИЧЕСКИ ЗАПРЕЩЕНО</summary>
                         <ul>
@@ -500,7 +508,6 @@
                         </ul>
                     </details>
 
-                    <!-- Категория 4: Дополнительно -->
                     <details>
                         <summary>📌 Дополнительно</summary>
                         <ul>
@@ -526,7 +533,7 @@
                 </div>
             </div>
 
-            <!-- Каналы (только названия) -->
+            <!-- Каналы -->
             <div id="channels-section" class="content-section">
                 <h2 style="text-align: center;">Наши каналы</h2>
                 <div class="channels-content">
@@ -545,7 +552,6 @@
         <p>A4P-All4Smp 1.21.x | IP: 185.9.145.89:32258</p>
     </footer>
 
-    <!-- Модальное окно -->
     <div id="modal" class="modal hidden">
         <div class="modal-content">
             <span class="close">&times;</span>
@@ -555,7 +561,6 @@
     </div>
 
     <script>
-        // Звёзды
         function createBgStars() {
             const container = document.getElementById('bg-stars');
             const starCount = 150;
@@ -601,7 +606,6 @@
             }, duration * 1000);
         }
 
-        // Переключение разделов и модалка
         document.addEventListener('DOMContentLoaded', function() {
             createBgStars();
             for (let i = 0; i < 8; i++) {
@@ -631,7 +635,6 @@
                 });
             });
 
-            // Модальное окно
             const modal = document.getElementById('modal');
             const modalMessage = document.getElementById('modal-message');
             const closeBtn = document.querySelector('.close');
