@@ -162,6 +162,7 @@
             justify-content: center;
             gap: 25px;
             margin-top: 20px;
+            align-items: stretch; /* карточки одной высоты */
         }
 
         .card {
@@ -174,6 +175,8 @@
             text-align: center;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
             transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
         }
 
         .card:hover {
@@ -197,6 +200,7 @@
         .card ul {
             list-style: none;
             margin-bottom: 20px;
+            flex: 1; /* занимает всё доступное пространство */
         }
 
         .card ul li {
@@ -216,6 +220,7 @@
             transition: transform 0.2s, box-shadow 0.2s;
             width: 100%;
             box-shadow: 0 4px 10px rgba(138, 43, 226, 0.3);
+            margin-top: auto; /* прижимает кнопку к низу */
         }
 
         .buy-btn:hover {
@@ -418,9 +423,10 @@
     <main>
         <div id="content-area">
             <!-- Донат -->
-            <div id="donate-section" class="content-section">
+            <div id="donate-section" class="content-section active">
                 <h2 style="text-align: center;">Донат-пакеты</h2>
                 <div class="donate-cards">
+                    <!-- Карточка VIP -->
                     <div class="card">
                         <h3>
                             <span style="background: linear-gradient(45deg, #8A2BE2, #E6E6FA, #8A2BE2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent; display: inline-block; margin-right: 5px;">♕</span>
@@ -437,6 +443,28 @@
                             <li><span style="color: #9B59B6;">♦</span> зᴀxᴏд ʜᴀ зᴀпᴏлʜᴇʜʜый ᴄᴇᴘʙᴇᴘ.</li>
                         </ul>
                         <button class="buy-btn" data-package="VIP" data-price="150">Купить</button>
+                    </div>
+
+                    <!-- Карточка Premium -->
+                    <div class="card">
+                        <h3>
+                            <span style="background: linear-gradient(45deg, #8A2BE2, #E6E6FA, #8A2BE2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent; display: inline-block; margin-right: 5px;">♕</span>
+                            Premium (Месяц)
+                        </h3>
+                        <p class="price">200 руб.</p>
+                        <ul>
+                            <li><span style="color: #9B59B6;">♦</span> дᴏᴄтупʜыᴇ ᴋᴏмᴀʜды</li>
+                            <li><span style="color: #9B59B6;">♦</span> иʜтᴇᴘȹᴇйᴄ утилизᴀции /ᴅɪsᴘᴏsᴀʟ</li>
+                            <li><span style="color: #9B59B6;">♦</span> ʜᴀдᴇть пᴘᴇдмᴇт ʜᴀ гᴏлᴏʙу /ᴇqᴜɪᴘ</li>
+                            <li><span style="color: #9B59B6;">♦</span> ᴄᴏᴘтиᴘᴏʙᴋᴀ ᴄуʜдуᴋᴏʙ /ᴄʜᴇsᴛsᴏʀᴛ</li>
+                            <li><span style="color: #9B59B6;">♦</span> ʙᴏᴄпᴏлʜить шᴋᴀлу гᴏлᴏдᴀ /ғᴇᴇᴅ</li>
+                            <li><span style="color: #9B59B6;">♦</span> дᴏпᴏлʜитᴇльʜᴏ</li>
+                            <li><span style="color: #9B59B6;">♦</span> зᴀxᴏд ʜᴀ зᴀпᴏлʜᴇʜʜый ᴄᴇᴘʙᴇᴘ.</li>
+                            <!-- Дополнительные возможности Premium -->
+                            <li><span style="color: #9B59B6;">♦</span> Доступ к невидимым рамкам /imageframe</li>
+                            <li><span style="color: #9B59B6;">♦</span> Свои картинки /image</li>
+                        </ul>
+                        <button class="buy-btn" data-package="Premium" data-price="200">Купить</button>
                     </div>
                 </div>
             </div>
@@ -513,8 +541,8 @@
                 </div>
             </div>
 
-            <!-- Вики (активна по умолчанию) -->
-            <div id="wiki-section" class="content-section active">
+            <!-- Вики -->
+            <div id="wiki-section" class="content-section">
                 <h2 style="text-align: center;">Вики по серверу</h2>
                 <div class="wiki-content">
                     <p>Здесь будет подробная информация о сервере, командах, особенностях и рецептах. Пока в разработке, но скоро всё появится!</p>
@@ -643,11 +671,10 @@
 
             document.querySelectorAll('.buy-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
-                    showModal(`Вы выбрали пакет "${this.dataset.package}" за ${this.dataset.price} руб.\nЧуть позже донат будет доступен!`);
+                    showModal(`Вы выбрали пакет "${this.dataset.package}" за ${this.dataset.price} руб.\nВ реальном проекте здесь будет переход к оплате.`);
                 });
             });
         });
     </script>
 </body>
 </html>
-
